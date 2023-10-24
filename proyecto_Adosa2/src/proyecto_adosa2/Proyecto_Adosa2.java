@@ -4,17 +4,24 @@
  */
 package proyecto_adosa2;
 
+import modelo.Juego;
+import vista.VentanaJuego;
+
 /**
  *
  * @author pablo
  */
 public class Proyecto_Adosa2 {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        //VentanaJuego ventana = new VentanaJuego();
+        Juego juego = new Juego();
+        
+        //juego.agregarFiguras();
+        juego.agregarFigurasAleatorias(3);
+        
     }
     
 }
