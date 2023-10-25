@@ -87,28 +87,80 @@ public class VentanaJuego extends JFrame{
         panel.add(boton);
         
         
-        btn1.setBounds(400, 50, 80, 80);
+        btn1.setBounds(400, 25, 80, 80);
         ImageIcon imagen_1 = new ImageIcon("img/cuadros/cuadradoRojo.png");
-        Image imagenEscalada = imagen_1.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        Image imagenEscalada1 = imagen_1.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         btn1.setBorderPainted(false);
         btn1.setContentAreaFilled(false);
-        btn1.setIcon(new ImageIcon(imagenEscalada));
+        btn1.setIcon(new ImageIcon(imagenEscalada1));
         btn1.setPreferredSize(new Dimension(80, 80));
+        btn1.setVisible(false);
         
-        btn2.setBounds(400, 150, 10, 10);
+        btn2.setBounds(400, 125, 80, 80);
+        ImageIcon imagen_2 = new ImageIcon("img/cuadros/cuadradoRojo.png");
+        Image imagenEscalada2 = imagen_2.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        btn2.setBorderPainted(false);
+        btn2.setContentAreaFilled(false);
+        btn2.setIcon(new ImageIcon(imagenEscalada2));
+        btn2.setPreferredSize(new Dimension(80, 80));
+        btn2.setVisible(false);
+
         
-        btn3.setBounds(400, 300, 10, 10);
         
-        btn4.setBounds(400, 400, 10, 10);
+        btn3.setBounds(400, 265, 80, 80);
+        ImageIcon imagen_3 = new ImageIcon("img/cuadros/cuadradoRojo.png");
+        Image imagenEscalada3 = imagen_3.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        btn3.setBorderPainted(false);
+        btn3.setContentAreaFilled(false);
+        btn3.setIcon(new ImageIcon(imagenEscalada3));
+        btn3.setPreferredSize(new Dimension(80, 80));
+        btn3.setVisible(false);
+        
+        btn4.setBounds(400, 365, 80, 80);
+        ImageIcon imagen_4 = new ImageIcon("img/cuadros/cuadradoRojo.png");
+        Image imagenEscalada4 = imagen_4.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        btn4.setBorderPainted(false);
+        btn4.setContentAreaFilled(false);
+        btn4.setIcon(new ImageIcon(imagenEscalada4));
+        btn4.setPreferredSize(new Dimension(80, 80));
+        btn4.setVisible(false);
         
         
-        btn5.setBounds(120, 225, 10, 10);
+        btn5.setBounds(120, 200, 80, 80);
+        ImageIcon imagen_5 = new ImageIcon("img/cuadros/cuadradoRojo.png");
+        Image imagenEscalada5 = imagen_5.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        btn5.setBorderPainted(false);
+        btn5.setContentAreaFilled(false);
+        btn5.setIcon(new ImageIcon(imagenEscalada5));
+        btn5.setPreferredSize(new Dimension(80, 80));
+        btn5.setVisible(false);
         
-        btn6.setBounds(240, 225, 10, 10);
+        btn6.setBounds(240, 200, 80, 80);
+        ImageIcon imagen_6 = new ImageIcon("img/cuadros/cuadradoRojo.png");
+        Image imagenEscalada6 = imagen_6.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        btn6.setBorderPainted(false);
+        btn6.setContentAreaFilled(false);
+        btn6.setIcon(new ImageIcon(imagenEscalada6));
+        btn6.setPreferredSize(new Dimension(80, 80));
+        btn6.setVisible(false);
         
-        btn7.setBounds(535, 225, 10, 10);
+        btn7.setBounds(535, 200, 80, 80);
+        ImageIcon imagen_7 = new ImageIcon("img/cuadros/cuadradoRojo.png");
+        Image imagenEscalada7 = imagen_7.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        btn7.setBorderPainted(false);
+        btn7.setContentAreaFilled(false);
+        btn7.setIcon(new ImageIcon(imagenEscalada7));
+        btn7.setPreferredSize(new Dimension(80, 80));
+        btn7.setVisible(false);
         
-        btn8.setBounds(655, 225, 10, 10);
+        btn8.setBounds(655, 200, 80, 80);
+        ImageIcon imagen_8 = new ImageIcon("img/cuadros/cuadradoRojo.png");
+        Image imagenEscalada8 = imagen_8.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        btn8.setBorderPainted(false);
+        btn8.setContentAreaFilled(false);
+        btn8.setIcon(new ImageIcon(imagenEscalada8));
+        btn8.setPreferredSize(new Dimension(80, 80));
+        btn8.setVisible(false);
         
         
         

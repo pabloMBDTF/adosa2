@@ -28,7 +28,7 @@ public class Juego {
         this.barraDerecha = new ArrayList<>();
         this.listaFiguras = new ArrayList<>();
         this.jugador = new Jugador();
-        agregarFiguras();
+        //agregarFiguras();
     }
 
     public List<Figura> getBarraArriba() {
@@ -81,16 +81,16 @@ public class Juego {
     
     
     public void agregarFiguras(){
-        Figura figura1 = new Figura("Figura 1", "ruta/a/imagen1.jpg");
-        Figura figura2 = new Figura("Figura 2", "ruta/a/imagen2.jpg");
-        Figura figura3 = new Figura("Figura 3", "ruta/a/imagen3.jpg");
-        Figura figura4 = new Figura("Figura 4", "ruta/a/imagen4.jpg");
-        Figura figura5 = new Figura("Figura 5", "ruta/a/imagen5.jpg");
-        Figura figura6 = new Figura("Figura 6", "ruta/a/imagen6.jpg");
-        Figura figura7 = new Figura("Figura 7", "ruta/a/imagen7.jpg");
-        Figura figura8 = new Figura("Figura 8", "ruta/a/imagen8.jpg");
-        Figura figura9 = new Figura("Figura 9", "ruta/a/imagen9.jpg");
-        Figura figura10 = new Figura("Figura 10", "ruta/a/imagen10.jpg");
+        Figura figura1 = new Figura("Figura 1", "img/cuadros/cuadradoRojo.png");
+        Figura figura2 = new Figura("Figura 2", "img/cuadros/cuadradoRojo.png");
+        Figura figura3 = new Figura("Figura 3", "img/cuadros/cuadradoRojo.png");
+        Figura figura4 = new Figura("Figura 4", "img/cuadros/cuadradoRojo.png");
+        Figura figura5 = new Figura("Figura 5", "img/cuadros/cuadradoRojo.png");
+        Figura figura6 = new Figura("Figura 6", "img/cuadros/cuadradoRojo.png");
+        Figura figura7 = new Figura("Figura 7", "img/cuadros/cuadradoRojo.png");
+        Figura figura8 = new Figura("Figura 8", "img/cuadros/cuadradoRojo.png");
+        Figura figura9 = new Figura("Figura 9", "img/cuadros/cuadradoRojo.png");
+        Figura figura10 = new Figura("Figura 10", "img/cuadros/cuadradoRojo.png");
 
         anadirFig(figura1);
         anadirFig(figura2);
@@ -165,6 +165,10 @@ public class Juego {
         }
 
         System.out.println("Todo bien");
+        System.out.println(barraArriba);
+        System.out.println(barraAbajo);
+        System.out.println(barraIzquierda);
+        System.out.println(barraDerecha);
     }
     
 }
