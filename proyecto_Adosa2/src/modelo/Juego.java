@@ -16,7 +16,7 @@ public class Juego {
     
     private List<Figura> barraArriba;
     private List<Figura> barraAbajo;
-    private List<Figura> barraIzquiaerda;
+    private List<Figura> barraIzquierda;
     private List<Figura> barraDerecha;
     private List<Figura> listaFiguras;
     private Jugador jugador;
@@ -24,7 +24,7 @@ public class Juego {
     public Juego() {
         this.barraArriba = new ArrayList<>();
         this.barraAbajo = new ArrayList<>();
-        this.barraIzquiaerda = new ArrayList<>();
+        this.barraIzquierda = new ArrayList<>();
         this.barraDerecha = new ArrayList<>();
         this.listaFiguras = new ArrayList<>();
         this.jugador = new Jugador();
@@ -47,12 +47,12 @@ public class Juego {
         this.barraAbajo = barraAbajo;
     }
 
-    public List<Figura> getBarraIzquiaerda() {
-        return barraIzquiaerda;
+    public List<Figura> getBarraIzquierda() {
+        return barraIzquierda;
     }
 
     public void setBarraIzquiaerda(List<Figura> barraIzquiaerda) {
-        this.barraIzquiaerda = barraIzquiaerda;
+        this.barraIzquierda = barraIzquiaerda;
     }
 
     public List<Figura> getBarraDerecha() {
@@ -116,6 +116,11 @@ public class Juego {
             System.out.println("No hay suficientes figuras en listaFiguras.");
             return;
         }
+        
+        barraArriba.clear();
+        barraAbajo.clear();
+        barraIzquierda.clear();
+        barraDerecha.clear();
 
         Random random = new Random();
 
@@ -123,26 +128,43 @@ public class Juego {
             int indiceFiguraAleatoria = random.nextInt(listaFiguras.size());
             Figura figura = listaFiguras.get(indiceFiguraAleatoria);
 
-            
-            int indiceBarraAleatoria = random.nextInt(4); 
-            switch (indiceBarraAleatoria) {
-                case 0:
-                    barraArriba.add(figura);
-                    break;
-                case 1:
-                    barraAbajo.add(figura);
-                    break;
-                case 2:
-                    barraIzquiaerda.add(figura);
-                    break;
-                case 3:
-                    barraDerecha.add(figura);
-                    break;
+            boolean figuraAgregada = false;
+
+            while (!figuraAgregada) {
+                int indiceBarraAleatoria = random.nextInt(4); 
+
+                switch (indiceBarraAleatoria) {
+                    case 0:
+                        if (barraArriba.size() < 2) {
+                            barraArriba.add(figura);
+                            figuraAgregada = true;
+                        }
+                        break;
+                    case 1:
+                        if (barraAbajo.size() < 2) {
+                            barraAbajo.add(figura);
+                            figuraAgregada = true;
+                        }
+                        break;
+                    case 2:
+                        if (barraIzquierda.size() < 2) {
+                            barraIzquierda.add(figura);
+                            figuraAgregada = true;
+                        }
+                        break;
+                    case 3:
+                        if (barraDerecha.size() < 2) {
+                            barraDerecha.add(figura);
+                            figuraAgregada = true;
+                        }
+                        break;
+                }
             }
 
             listaFiguras.remove(indiceFiguraAleatoria);
         }
-        System.out.println("todo bien");
+
+        System.out.println("Todo bien");
     }
     
 }

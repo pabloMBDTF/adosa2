@@ -16,11 +16,11 @@ public class Proyecto_Adosa2 {
    
     public static void main(String[] args) {
         
-        //VentanaJuego ventana = new VentanaJuego();
-        Juego juego = new Juego();
+        VentanaJuego ventana = new VentanaJuego();
+        //Juego juego = new Juego();
         
         //juego.agregarFiguras();
-        juego.agregarFigurasAleatorias(3);
+        //juego.agregarFigurasAleatorias(3);
         
     }
     
