@@ -82,12 +82,12 @@ public class Juego {
     
     public void agregarFiguras(){
         Figura figura1 = new Figura("Figura 1", "img/cuadros/cuadradoRojo.png");
-        Figura figura2 = new Figura("Figura 2", "img/cuadros/cuadradoRojo.png");
-        Figura figura3 = new Figura("Figura 3", "img/cuadros/cuadradoRojo.png");
-        Figura figura4 = new Figura("Figura 4", "img/cuadros/cuadradoRojo.png");
-        Figura figura5 = new Figura("Figura 5", "img/cuadros/cuadradoRojo.png");
-        Figura figura6 = new Figura("Figura 6", "img/cuadros/cuadradoRojo.png");
-        Figura figura7 = new Figura("Figura 7", "img/cuadros/cuadradoRojo.png");
+        Figura figura2 = new Figura("Azul", "img/cuadros/cuadroAzul.jpg");
+        Figura figura3 = new Figura("Figura 3", "img/cuadros/cuadradoAmarillo.jpg");
+        Figura figura4 = new Figura("Figura 4", "img/cuadros/cuadradoNaranja.jpg");
+        Figura figura5 = new Figura("Figura 5", "img/cuadros/cuadradoVerde.jpg");
+        Figura figura6 = new Figura("Figura 6", "img/cuadros/cuadradoVioleta.jpg");
+        Figura figura7 = new Figura("Figura 7", "img/cuadros/cuadradoRojo.jpg");
         Figura figura8 = new Figura("Figura 8", "img/cuadros/cuadradoRojo.png");
         Figura figura9 = new Figura("Figura 9", "img/cuadros/cuadradoRojo.png");
         Figura figura10 = new Figura("Figura 10", "img/cuadros/cuadradoRojo.png");

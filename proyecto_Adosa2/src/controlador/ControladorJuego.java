@@ -35,6 +35,7 @@ public class ControladorJuego {
     private JButton btn6C;
     private JButton btn7C;
     private JButton btn8C;
+    private boolean repuesta = false;
     
     
 
@@ -70,7 +71,11 @@ public class ControladorJuego {
     } 
     
     public void cambiarFigura(){
-        
+        List<Figura> barraArrivaC = juego.getBarraArriba();
+        List<Figura> barraAbajoC = juego.getBarraAbajo();
+        List<Figura> barraIzquierdaC = juego.getBarraIzquierda();
+        List<Figura> barraDerechaC = juego.getBarraDerecha();
+        List<Figura> listaFigurasC = juego.getListaFiguras();
     }
     
     public void pintarFigArriva() {
@@ -88,6 +93,7 @@ public class ControladorJuego {
                 ventana.getBtn1().setIcon(new ImageIcon(imagenEscalada1));
                 ventana.getBtn1().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn1().setVisible(true);
+                ventana.getBtn1().setText(figura1.getNombre());
 
             }
 
@@ -103,12 +109,12 @@ public class ControladorJuego {
                 ventana.getBtn2().setIcon(new ImageIcon(imagenEscalada2));
                 ventana.getBtn2().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn2().setVisible(true);
+                ventana.getBtn2().setText(figura2.getNombre());
             }
         } else {
             System.out.println("La lista está vacía");
         }
     }
-    
     
     public void pintarFigAbajo() {
         List<Figura> barraAbajoC = juego.getBarraAbajo();
@@ -125,6 +131,7 @@ public class ControladorJuego {
                 ventana.getBtn3().setIcon(new ImageIcon(imagenEscalada3));
                 ventana.getBtn3().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn3().setVisible(true);
+                ventana.getBtn3().setText(figura3.getNombre());
 
             }
 
@@ -140,6 +147,7 @@ public class ControladorJuego {
                 ventana.getBtn4().setIcon(new ImageIcon(imagenEscalada4));
                 ventana.getBtn4().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn4().setVisible(true);
+                ventana.getBtn4().setText(figura4.getNombre());
             }
         } else {
             System.out.println("La lista está vacía");
@@ -161,6 +169,7 @@ public class ControladorJuego {
                 ventana.getBtn5().setIcon(new ImageIcon(imagenEscalada5));
                 ventana.getBtn5().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn5().setVisible(true);
+                ventana.getBtn5().setText(figura5.getNombre());
 
             }
 
@@ -171,11 +180,12 @@ public class ControladorJuego {
                 ImageIcon imagen_6 = new ImageIcon(figura6.getRutaImg());
                 System.out.println(figura6.getRutaImg());
                 Image imagenEscalada6 = imagen_6.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-                ventana.getBtn4().setBorderPainted(false);
-                ventana.getBtn4().setContentAreaFilled(false);
-                ventana.getBtn4().setIcon(new ImageIcon(imagenEscalada6));
-                ventana.getBtn4().setPreferredSize(new Dimension(80, 80));
-                ventana.getBtn4().setVisible(true);
+                ventana.getBtn6().setBorderPainted(false);
+                ventana.getBtn6().setContentAreaFilled(false);
+                ventana.getBtn6().setIcon(new ImageIcon(imagenEscalada6));
+                ventana.getBtn6().setPreferredSize(new Dimension(80, 80));
+                ventana.getBtn6().setVisible(true);
+                ventana.getBtn6().setText(figura6.getNombre());
             }
         } else {
             System.out.println("La lista está vacía");
@@ -197,6 +207,8 @@ public class ControladorJuego {
                 ventana.getBtn7().setIcon(new ImageIcon(imagenEscalada7));
                 ventana.getBtn7().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn7().setVisible(true);
+                ventana.getBtn7().setText(figura7.getNombre());
+                
 
             }
 
@@ -212,11 +224,14 @@ public class ControladorJuego {
                 ventana.getBtn8().setIcon(new ImageIcon(imagenEscalada8));
                 ventana.getBtn8().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn8().setVisible(true);
+                ventana.getBtn8().setText(figura8.getNombre());
             }
         } else {
             System.out.println("La lista está vacía");
         }
     }
+    
+    
     
     
     
