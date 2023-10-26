@@ -6,9 +6,12 @@ package controlador;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.Timer;
 import modelo.Figura;
 import modelo.Juego;
 import vista.VentanaJuego;
@@ -50,7 +53,7 @@ public class ControladorJuego {
     
     public void iniciarJuego(){
         juego.agregarFiguras();
-        juego.agregarFigurasAleatorias(5);
+        juego.agregarFigurasAleatorias(8);
         
     }
     
@@ -93,7 +96,9 @@ public class ControladorJuego {
                 ventana.getBtn1().setIcon(new ImageIcon(imagenEscalada1));
                 ventana.getBtn1().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn1().setVisible(true);
-                ventana.getBtn1().setText(figura1.getNombre());
+                ventana.getBtn1().setText(null);
+                animarDesplazamientoBotones(ventana.getBtn1(), ventana.getBtn1().getX(), ventana.getBtn1().getY());
+                //ventana.getBtn1().setText(figura1.getNombre());
 
             }
 
@@ -109,7 +114,10 @@ public class ControladorJuego {
                 ventana.getBtn2().setIcon(new ImageIcon(imagenEscalada2));
                 ventana.getBtn2().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn2().setVisible(true);
-                ventana.getBtn2().setText(figura2.getNombre());
+                ventana.getBtn2().setBorder(null);
+                ventana.getBtn2().setText(null);
+                animarDesplazamientoBotones(ventana.getBtn2(), ventana.getBtn2().getX(), ventana.getBtn2().getY());
+                //ventana.getBtn2().setText(figura2.getNombre());
             }
         } else {
             System.out.println("La lista está vacía");
@@ -131,7 +139,9 @@ public class ControladorJuego {
                 ventana.getBtn3().setIcon(new ImageIcon(imagenEscalada3));
                 ventana.getBtn3().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn3().setVisible(true);
-                ventana.getBtn3().setText(figura3.getNombre());
+                ventana.getBtn3().setText(null);
+                animarDesplazamientoBotones(ventana.getBtn3(), ventana.getBtn3().getX(), ventana.getBtn3().getY());
+                //ventana.getBtn3().setText(figura3.getNombre());
 
             }
 
@@ -147,7 +157,9 @@ public class ControladorJuego {
                 ventana.getBtn4().setIcon(new ImageIcon(imagenEscalada4));
                 ventana.getBtn4().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn4().setVisible(true);
-                ventana.getBtn4().setText(figura4.getNombre());
+                ventana.getBtn4().setText(null);
+                animarDesplazamientoBotones(ventana.getBtn4(), ventana.getBtn4().getX(), ventana.getBtn4().getY());
+                //ventana.getBtn4().setText(figura4.getNombre());
             }
         } else {
             System.out.println("La lista está vacía");
@@ -169,7 +181,9 @@ public class ControladorJuego {
                 ventana.getBtn5().setIcon(new ImageIcon(imagenEscalada5));
                 ventana.getBtn5().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn5().setVisible(true);
-                ventana.getBtn5().setText(figura5.getNombre());
+                ventana.getBtn5().setText(null);
+                animarDesplazamientoBotones(ventana.getBtn5(), ventana.getBtn5().getX(), ventana.getBtn5().getY());
+                //ventana.getBtn5().setText(figura5.getNombre());
 
             }
 
@@ -186,6 +200,8 @@ public class ControladorJuego {
                 ventana.getBtn6().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn6().setVisible(true);
                 ventana.getBtn6().setText(figura6.getNombre());
+                ventana.getBtn6().setText(null);
+                animarDesplazamientoBotones(ventana.getBtn6(), ventana.getBtn6().getX(), ventana.getBtn6().getY());
             }
         } else {
             System.out.println("La lista está vacía");
@@ -208,6 +224,9 @@ public class ControladorJuego {
                 ventana.getBtn7().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn7().setVisible(true);
                 ventana.getBtn7().setText(figura7.getNombre());
+                ventana.getBtn7().setText(null);
+                
+                animarDesplazamientoBotones(ventana.getBtn7(), ventana.getBtn7().getX(), ventana.getBtn7().getY());
                 
 
             }
@@ -225,6 +244,8 @@ public class ControladorJuego {
                 ventana.getBtn8().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn8().setVisible(true);
                 ventana.getBtn8().setText(figura8.getNombre());
+                ventana.getBtn8().setText(null);
+                animarDesplazamientoBotones(ventana.getBtn8(), ventana.getBtn8().getX(), ventana.getBtn8().getY());
             }
         } else {
             System.out.println("La lista está vacía");
@@ -232,7 +253,36 @@ public class ControladorJuego {
     }
     
     
+    public void animarDesplazamientoBotones(JButton boton, int xDestino, int yDestino) {
+        int xInicio = -boton.getWidth(); // Iniciar fuera de la pantalla a la izquierda
+        int yInicio = yDestino; // Mismo nivel vertical que el destino
+
+        Timer timer = new Timer(1, new ActionListener() {
+            int x = xInicio;
+            int y = yInicio;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (x < xDestino) {
+                    x++;
+                }
+                if (y < yDestino) {
+                    y++;
+                }
+                boton.setLocation(x, y);
+
+                if (x == xDestino && y == yDestino) {
+                    // La animación ha llegado a su destino, detén el timer
+                    ((Timer) e.getSource()).stop();
+                }
+            }
+        });
+
+        timer.start();
+    }
     
+    
+    // son la misma hubicacion trin
     
     
     
