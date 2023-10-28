@@ -62,7 +62,7 @@ public class VentanaInicio extends JFrame{
         
         
         label1 = new JLabel();
-        label1.setBounds(325, 30, 150, 100);
+        label1.setBounds(325, 30, 200, 200);//150-100
         ImageIcon img = new ImageIcon("img/cuadros/adosa2.png");
         label1.setIcon(new ImageIcon(img.getImage().getScaledInstance(label1.getWidth(),label1.getHeight(), Image.SCALE_SMOOTH)));
         panel.add(label1);
