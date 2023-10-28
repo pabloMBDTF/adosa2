@@ -18,15 +18,15 @@ public class Proyecto_Adosa2 {
    
     public static void main(String[] args) {
         
-        VentanaJuego ventana = new VentanaJuego();
+        //VentanaJuego ventana = new VentanaJuego();
         //new VentanaInicio().setVisible(true);
-        //VentanaInicio ventanaa = new VentanaInicio() ;
-        Juego juego = new Juego();
+        VentanaInicio ventanaa = new VentanaInicio() ;
+        //Juego juego = new Juego();
         //juego.agregarFigurasAleatorias(3);
         //juego.agregarFiguras();
         //juego.agregarFigurasAleatorias(3);
         
-        ControladorJuego controlador = new ControladorJuego(juego, ventana);
+        //ControladorJuego controlador = new ControladorJuego(juego, ventana);
         
     }
     
