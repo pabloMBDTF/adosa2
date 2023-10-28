@@ -164,11 +164,12 @@ public class Juego {
             listaFiguras.remove(indiceFiguraAleatoria);
         }
 
-        System.out.println("Todo bien");
+        //System.out.println("Todo bien");
         System.out.println(barraArriba);
         System.out.println(barraAbajo);
         System.out.println(barraIzquierda);
         System.out.println(barraDerecha);
+        System.out.println(listaFiguras);
     }
     
 }
