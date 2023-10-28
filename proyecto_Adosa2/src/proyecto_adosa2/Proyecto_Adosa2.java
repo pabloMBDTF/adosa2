@@ -26,7 +26,7 @@ public class Proyecto_Adosa2 {
         //juego.agregarFiguras();
         //juego.agregarFigurasAleatorias(3);
         
-        //ControladorJuego controlador = new ControladorJuego(juego, ventana);
+        ControladorJuego controlador = new ControladorJuego(juego, ventana);
         
     }
     
