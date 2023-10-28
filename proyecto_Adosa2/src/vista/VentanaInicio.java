@@ -57,8 +57,8 @@ public class VentanaInicio extends JFrame{
           }
       };
         ventanaInicio.setContentPane(panel);
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        ventanaInicio.setVisible(true);
+        panel.setLayout(null);
+        
         
         
         label1 = new JLabel();
@@ -82,9 +82,11 @@ public class VentanaInicio extends JFrame{
         
         
         label4 = new JLabel();
-        label4.setBounds(450, 400, 96, 96);
+        label4.setBounds(660, 225, 96, 96);
         ImageIcon img4 = new ImageIcon("img/cuadros/paraQue.png");
         label4.setIcon(new ImageIcon(img4.getImage().getScaledInstance(label4.getWidth(), label4.getHeight(), Image.SCALE_SMOOTH)));
         panel.add(label4);
+        
+        ventanaInicio.setVisible(true);
     }
 }
