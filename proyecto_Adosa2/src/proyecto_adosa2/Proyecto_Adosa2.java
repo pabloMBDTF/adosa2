@@ -7,6 +7,7 @@ package proyecto_adosa2;
 import controlador.ControladorJuego;
 import modelo.Juego;
 import vista.VentanaJuego;
+import vista.VentanaInicio;
 
 /**
  *
@@ -17,13 +18,15 @@ public class Proyecto_Adosa2 {
    
     public static void main(String[] args) {
         
-        VentanaJuego ventana = new VentanaJuego();
-        Juego juego = new Juego();
+        //VentanaJuego ventana = new VentanaJuego();
+        //new VentanaInicio().setVisible(true);
+        VentanaInicio ventanaa = new VentanaInicio() ;
+        //Juego juego = new Juego();
         //juego.agregarFigurasAleatorias(3);
         //juego.agregarFiguras();
         //juego.agregarFigurasAleatorias(3);
         
-        ControladorJuego controlador = new ControladorJuego(juego, ventana);
+        //ControladorJuego controlador = new ControladorJuego(juego, ventana);
         
     }
     
