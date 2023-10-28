@@ -55,7 +55,7 @@ public class VentanaJuego extends JFrame{
                 super.paintComponent(g);
                 // Cargar la imagen de fondo desde un archivo
                 try {
-                    BufferedImage imagenFondo = ImageIO.read(new File("img/fondos/fondo.jpg"));
+                    BufferedImage imagenFondo = ImageIO.read(new File("img/fondos/fondo.png"));
                     g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
                 } catch (IOException e) {
                     e.printStackTrace();
