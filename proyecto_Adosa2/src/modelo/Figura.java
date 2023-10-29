@@ -15,6 +15,17 @@ public class Figura {
 
     public Figura() {
     }
+    
+    public Figura duplicar() {
+    // Crea una nueva instancia de Figura y copia los atributos de la figura actual
+        Figura figuraDuplicada = new Figura();
+        figuraDuplicada.setNombre(this.nombre);
+        figuraDuplicada.setRutaImg(this.rutaImg); // Suponiendo que tienes un atributo "color"
+
+        // Si tienes otros atributos, asegúrate de copiarlos también
+
+        return figuraDuplicada;
+    }
 
     public Figura(String nombre, String rutaImg) {
         this.nombre = nombre;

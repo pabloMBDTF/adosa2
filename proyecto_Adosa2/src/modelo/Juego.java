@@ -81,7 +81,14 @@ public class Juego {
     
     
     public void agregarFiguras(){
-        Figura figura1 = new Figura("r", "img/cuadros/cuadradoRojo.png");
+        barraArriba.clear();
+        barraAbajo.clear();
+        barraIzquierda.clear();
+        barraDerecha.clear();
+        listaFiguras.clear();
+        
+        
+        Figura figura1 = new Figura("r", "img/cuadros/cuadradoRojo.jpg");
         Figura figura2 = new Figura("A", "img/cuadros/cuadroAzul.jpg");
         Figura figura3 = new Figura(" 3", "img/cuadros/cuadradoAmarillo.jpg");
         Figura figura4 = new Figura(" 4", "img/cuadros/cuadradoNaranja.jpg");

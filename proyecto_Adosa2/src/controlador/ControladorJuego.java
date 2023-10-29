@@ -8,10 +8,16 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import static java.lang.Math.random;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Figura;
 import modelo.Juego;
@@ -31,6 +37,9 @@ public class ControladorJuego {
     private List<Figura> barraIzquierdaC;
     private List<Figura> barraDerechaC;
     private List<Figura> listaFigurasC;
+    private List<Integer> botonesActivos = new ArrayList<>();
+    private List<Figura> figActivas = new ArrayList<>();
+    private Timer timer;
     private JButton btn1C;
     private JButton btn2C;
     private JButton btn3C;
@@ -39,7 +48,12 @@ public class ControladorJuego {
     private JButton btn6C;
     private JButton btn7C;
     private JButton btn8C;
-    private boolean repuesta = false;
+    private JButton btnAccion;
+    private JLabel vida1;
+    private JLabel vida2;
+    private JLabel vida3;
+    private boolean respuesta = false;
+    private boolean imgIguales = true;
     
     
 
@@ -47,28 +61,58 @@ public class ControladorJuego {
         this.juego = juego;
         this.ventana = ventana;
         iniciarJuego();
-        iniciarRonda();
-        Timer timer = new Timer(4000, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            cambiarFigura();
-            pintarFigArriva();
-            pintarFigAbajo();
-            pintarFigIzquierda();
-            pintarFigDerecha();// Llama a la función cambiarFigura
-        }
-        });
-        timer.start(); 
+        JButton botonAccion = ventana.getBoton();
+        
+        ventana.addBtnListener(new btnListener());
         
         
         
       
     }
     
+    class btnListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("a");
+            if (imgIguales == true) {
+                    figPantalla += 1;
+                    //juego.agregarFiguras();
+                    //juego.agregarFigurasAleatorias(figPantalla);
+                    botonesActivos.clear();
+                    figActivas.clear();
+                    iniciarRonda();
+                    System.out.println(botonesActivos);
+                    repetirFigura();
+                    
+                    timer.stop();
+            }
+        }
+    }
+    
     
     public void iniciarJuego(){
+        
         juego.agregarFiguras();
-        juego.agregarFigurasAleatorias(3);
+        juego.agregarFigurasAleatorias(figPantalla);
+        iniciarRonda();
+        timer = new Timer(4000, new ActionListener() {
+        @Override
+            public void actionPerformed(ActionEvent e) {
+                //cambiarFigura();
+                //botonesActivos.clear();
+                //botonesActivos.clear();
+                //iniciarRonda();
+                repetirFigura();
+                
+               
+            }
+        });
+        timer.stop(); 
+        
+        
+        
+        
+        
+    
 
     }
     
@@ -84,8 +128,8 @@ public class ControladorJuego {
         pintarFigDerecha();
     } 
     
-    
-
+        
+    //cambia una figura de una de las barras por una de el arreglo de figuras general
     public void cambiarFigura() {
         List<Figura> barraArribaC = juego.getBarraArriba();
         List<Figura> barraAbajoC = juego.getBarraAbajo();
@@ -95,7 +139,7 @@ public class ControladorJuego {
 
         Random random = new Random();
 
-        // Utiliza un bucle para seleccionar un arreglo no vacío
+        
         int indiceArregloOrigen;
         List<Figura> arregloSeleccionado = null;
 
@@ -145,19 +189,70 @@ public class ControladorJuego {
 
     
     
+   
     
-    
-    public void cambiarImgFig(JButton btn, String direccion, Figura fig){
-        ImageIcon imagen = new ImageIcon(fig.getRutaImg());
+    public void cambiarImgFig(JButton btn, String direccion){
+        ImageIcon imagen = new ImageIcon(direccion);
         Image imagenEscalada = imagen.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         btn.setIcon(new ImageIcon(imagenEscalada));
-        btn.setPreferredSize(new Dimension(80, 80));
+        btn.setPreferredSize(new Dimension(80, 80));              
+    }
+    
+    public void repetirFigura() {
+        List<Figura> barraArribaC = juego.getBarraArriba();
+        List<Figura> barraAbajoC = juego.getBarraAbajo();
+        List<Figura> barraIzquierdaC = juego.getBarraIzquierda();
+        List<Figura> barraDerechaC = juego.getBarraDerecha();
+        Random random = new Random();
+        
+        int valorProhibido = 0;
+        int valorBoton;
+        Figura figuraSeleccionada = null;
+        
+        
+        if (!figActivas.isEmpty()) {
+            
+            int indiceAleatorio = random.nextInt(figActivas.size());
+
+            // Obtén la Figura en el índice aleatorio
+            figuraSeleccionada = figActivas.get(indiceAleatorio);
+
+            // Asigna el índice aleatorio a la variable valorProhibido
+            valorProhibido = indiceAleatorio;
+
+            // Ahora puedes usar 'figuraSeleccionada' y 'valorProhibido' según tus necesidades
+        }
+        while (true) {
+            // Genera un número aleatorio entre 0 y el tamaño de la lista - 1
+            int numAle = random.nextInt(botonesActivos.size());
+            valorBoton = botonesActivos.get(numAle);
+
+            // Si el número generado es diferente a valorProhibido, sal del bucle
+            if (valorBoton != valorProhibido) {
+                break;
+            }
+        }
+        switch (valorBoton) {
+            case 1 -> cambiarImgFig(ventana.getBtn1(),figuraSeleccionada.getRutaImg()); // Tamaño pequeño
+            case 2 -> cambiarImgFig(ventana.getBtn2(),figuraSeleccionada.getRutaImg()); 
+            case 3 -> cambiarImgFig(ventana.getBtn3(),figuraSeleccionada.getRutaImg()); 
+            case 4 -> cambiarImgFig(ventana.getBtn4(),figuraSeleccionada.getRutaImg()); 
+            case 5 -> cambiarImgFig(ventana.getBtn5(),figuraSeleccionada.getRutaImg()); 
+            case 6 -> cambiarImgFig(ventana.getBtn6(),figuraSeleccionada.getRutaImg()); 
+            case 7 -> cambiarImgFig(ventana.getBtn7(),figuraSeleccionada.getRutaImg()); 
+            case 8 -> cambiarImgFig(ventana.getBtn8(),figuraSeleccionada.getRutaImg()); 
+            default -> {
+            }
+        }
+        
         
         
     }
     
     public void pintarFigArriva() {
         List<Figura> barraArrivaC = juego.getBarraArriba();
+        ventana.getBtn1().setVisible(false);
+        ventana.getBtn2().setVisible(false);
 
         if (!barraArrivaC.isEmpty()) {
             if (barraArrivaC.size() >= 1) {
@@ -171,6 +266,8 @@ public class ControladorJuego {
                 ventana.getBtn1().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn1().setVisible(true);
                 ventana.getBtn1().setText(null);
+                botonesActivos.add(1); 
+                figActivas.add(figura1);
                 //animarDesplazamientoBotones(ventana.getBtn1(), ventana.getBtn1().getX(), ventana.getBtn1().getY());
                 //ventana.getBtn1().setText(figura1.getNombre());
 
@@ -189,6 +286,8 @@ public class ControladorJuego {
                 ventana.getBtn2().setVisible(true);
                 ventana.getBtn2().setBorder(null);
                 ventana.getBtn2().setText(null);
+                botonesActivos.add(2);
+                figActivas.add(figura2);
                 //animarDesplazamientoBotones(ventana.getBtn2(), ventana.getBtn2().getX(), ventana.getBtn2().getY());
                 //ventana.getBtn2().setText(figura2.getNombre());
             }
@@ -199,6 +298,9 @@ public class ControladorJuego {
     
     public void pintarFigAbajo() {
         List<Figura> barraAbajoC = juego.getBarraAbajo();
+        
+        ventana.getBtn3().setVisible(false);
+        ventana.getBtn4().setVisible(false);
 
         if (!barraAbajoC.isEmpty()) {
             if (barraAbajoC.size() >= 1) {
@@ -212,6 +314,8 @@ public class ControladorJuego {
                 ventana.getBtn3().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn3().setVisible(true);
                 ventana.getBtn3().setText(null);
+                botonesActivos.add(3); 
+                figActivas.add(figura3);
                 //animarDesplazamientoBotones(ventana.getBtn3(), ventana.getBtn3().getX(), ventana.getBtn3().getY());
                 //ventana.getBtn3().setText(figura3.getNombre());
 
@@ -229,6 +333,8 @@ public class ControladorJuego {
                 ventana.getBtn4().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn4().setVisible(true);
                 ventana.getBtn4().setText(null);
+                botonesActivos.add(4); 
+                figActivas.add(figura4);
                 //animarDesplazamientoBotones(ventana.getBtn4(), ventana.getBtn4().getX(), ventana.getBtn4().getY());
                 //ventana.getBtn4().setText(figura4.getNombre());
             }
@@ -239,6 +345,9 @@ public class ControladorJuego {
     
     public void pintarFigIzquierda() {
         List<Figura> barraIzquierdaC = juego.getBarraIzquierda();
+        
+        ventana.getBtn5().setVisible(false);
+        ventana.getBtn6().setVisible(false);
 
         if (!barraIzquierdaC.isEmpty()) {
             if (barraIzquierdaC.size() >= 1) {
@@ -252,8 +361,10 @@ public class ControladorJuego {
                 ventana.getBtn5().setPreferredSize(new Dimension(80, 80));
                 ventana.getBtn5().setVisible(true);
                 ventana.getBtn5().setText(null);
+                botonesActivos.add(5); 
+                figActivas.add(figura5);
                 //animarDesplazamientoBotones(ventana.getBtn5(), ventana.getBtn5().getX(), ventana.getBtn5().getY());
-                //ventana.getBtn5().setText(figura5.getNombre());
+                
 
             }
 
@@ -270,6 +381,8 @@ public class ControladorJuego {
                 ventana.getBtn6().setVisible(true);
                 ventana.getBtn6().setText(figura6.getNombre());
                 ventana.getBtn6().setText(null);
+                botonesActivos.add(6); 
+                figActivas.add(figura6);
                 //animarDesplazamientoBotones(ventana.getBtn6(), ventana.getBtn6().getX(), ventana.getBtn6().getY());
             }
         } else {
@@ -279,6 +392,9 @@ public class ControladorJuego {
     
     public void pintarFigDerecha() {
         List<Figura> barraDerechaC = juego.getBarraDerecha();
+        
+        ventana.getBtn7().setVisible(false);
+        ventana.getBtn8().setVisible(false);
 
         if (!barraDerechaC.isEmpty()) {
             if (barraDerechaC.size() >= 1) {
@@ -293,6 +409,8 @@ public class ControladorJuego {
                 ventana.getBtn7().setVisible(true);
                 ventana.getBtn7().setText(figura7.getNombre());
                 ventana.getBtn7().setText(null);
+                botonesActivos.add(7);
+                figActivas.add(figura7);
                 
                 //animarDesplazamientoBotones(ventana.getBtn7(), ventana.getBtn7().getX(), ventana.getBtn7().getY());
                 
@@ -312,6 +430,8 @@ public class ControladorJuego {
                 ventana.getBtn8().setVisible(true);
                 ventana.getBtn8().setText(figura8.getNombre());
                 ventana.getBtn8().setText(null);
+                botonesActivos.add(8); 
+                figActivas.add(figura8);
                 //animarDesplazamientoBotones(ventana.getBtn8(), ventana.getBtn8().getX(), ventana.getBtn8().getY());
             }
         } else {
@@ -349,9 +469,6 @@ public class ControladorJuego {
     }
     
     
-    // son la misma hubicacion trin
     
-    
-    
-    
+        
 }
