@@ -203,7 +203,7 @@ public class VentanaJuego extends JFrame{
         vida3.setVisible(true);
         
         
-        
+       
         
                               
         
