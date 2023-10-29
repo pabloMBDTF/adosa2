@@ -38,7 +38,6 @@ public class Proyecto_Adosa2 {
         ControladorJuego controlador = new ControladorJuego(juego, ventana);
         Jugador jugador = new Jugador();
         //ControladorInicio controladorInicio = new ControladorInicio(jugador, ventanaInicio);
-        
 
         
     }
