@@ -27,7 +27,7 @@ public class Proyecto_Adosa2 {
         //VentanaInicio ventanaa = new VentanaInicio() ;
         Juego juego = new Juego();
 
-        VentanaInicio ventanaInicio = new VentanaInicio() ;
+        //VentanaInicio ventanaInicio = new VentanaInicio() ;
         //VentanaParaQue ventanaParaQue= new VentanaParaQue();
         //Juego juego = new Juego();
         //juego.agregarFigurasAleatorias(3);
@@ -35,9 +35,9 @@ public class Proyecto_Adosa2 {
         //juego.agregarFigurasAleatorias(3);
         
 
-        //ControladorJuego controlador = new ControladorJuego(juego, ventana);
+        ControladorJuego controlador = new ControladorJuego(juego, ventana);
         Jugador jugador = new Jugador();
-        ControladorInicio controladorInicio = new ControladorInicio(jugador, ventanaInicio);
+        //ControladorInicio controladorInicio = new ControladorInicio(jugador, ventanaInicio);
         
 
         

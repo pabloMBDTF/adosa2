@@ -75,8 +75,8 @@ public class ControladorJuego {
             System.out.println("a");
             if (imgIguales == true) {
                     figPantalla += 1;
-                    juego.agregarFiguras();
-                    juego.agregarFigurasAleatorias(figPantalla);
+                    //juego.agregarFiguras();
+                    //juego.agregarFigurasAleatorias(figPantalla);
                     botonesActivos.clear();
                     figActivas.clear();
                     iniciarRonda();
@@ -106,7 +106,7 @@ public class ControladorJuego {
                
             }
         });
-        timer.start(); 
+        timer.stop(); 
         
         
         
@@ -224,7 +224,8 @@ public class ControladorJuego {
         }
         while (true) {
             // Genera un número aleatorio entre 0 y el tamaño de la lista - 1
-            valorBoton = random.nextInt(botonesActivos.size());
+            int numAle = random.nextInt(botonesActivos.size());
+            valorBoton = botonesActivos.get(numAle);
 
             // Si el número generado es diferente a valorProhibido, sal del bucle
             if (valorBoton != valorProhibido) {
