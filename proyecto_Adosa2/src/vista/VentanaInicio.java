@@ -62,7 +62,7 @@ public class VentanaInicio extends JFrame{
         
         
         label1 = new JLabel();
-        label1.setBounds(325, 30, 200, 200);//150-100
+        label1.setBounds(325, 30, 150, 100);//150-100
         ImageIcon img = new ImageIcon("img/cuadros/adosa2.png");
         label1.setIcon(new ImageIcon(img.getImage().getScaledInstance(label1.getWidth(),label1.getHeight(), Image.SCALE_SMOOTH)));
         panel.add(label1);
@@ -89,4 +89,55 @@ public class VentanaInicio extends JFrame{
         
         ventanaInicio.setVisible(true);
     }
+
+    public JFrame getVentanaInicio() {
+        return ventanaInicio;
+    }
+
+    public void setVentanaInicio(JFrame ventanaInicio) {
+        this.ventanaInicio = ventanaInicio;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JLabel getLabel1() {
+        return label1;
+    }
+
+    public void setLabel1(JLabel label1) {
+        this.label1 = label1;
+    }
+
+    public JLabel getLabel2() {
+        return label2;
+    }
+
+    public void setLabel2(JLabel label2) {
+        this.label2 = label2;
+    }
+
+    public JLabel getLabel3() {
+        return label3;
+    }
+
+    public void setLabel3(JLabel label3) {
+        this.label3 = label3;
+    }
+
+    public JLabel getLabel4() {
+        return label4;
+    }
+
+    public void setLabel4(JLabel label4) {
+        this.label4 = label4;
+    }
+     
+     
+     
 }
