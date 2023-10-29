@@ -17,7 +17,7 @@ public class Jugador {
     // Constructor vacío
     public Jugador() {
         this.nombre = "";
-        this.vidas = 0;
+        this.vidas = 3;
         this.aciertos = 0;
         this.errores = 0;
     }

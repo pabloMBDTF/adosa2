@@ -7,6 +7,7 @@ package vista;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +39,9 @@ public class VentanaJuego extends JFrame{
     private JButton btn7;
     private JButton btn8;
     private JButton boton;
+    private JLabel vida1;
+    private JLabel vida2;
+    private JLabel vida3;
     
     
     
@@ -75,6 +79,9 @@ public class VentanaJuego extends JFrame{
         btn7 = new JButton("1");
         btn8 = new JButton("1");
         boton = new JButton("btn");
+        vida1 = new JLabel();
+        vida2 = new JLabel();
+        vida3 = new JLabel();
         
         panel.add(btn1);
         panel.add(btn2);
@@ -85,6 +92,9 @@ public class VentanaJuego extends JFrame{
         panel.add(btn7);
         panel.add(btn8);
         panel.add(boton);
+        panel.add(vida1);
+        panel.add(vida2);
+        panel.add(vida3);
         
         
         btn1.setBounds(400, 25, 80, 80);
@@ -162,11 +172,40 @@ public class VentanaJuego extends JFrame{
         btn8.setPreferredSize(new Dimension(80, 80));
         btn8.setVisible(false);
         
+        boton.setBounds(655, 360, 100, 100);
+        ImageIcon imagen_9 = new ImageIcon("img/cuadros/btnJuego.png");
+        Image imagenEscalada9 = imagen_9.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        boton.setBorderPainted(false);
+        boton.setContentAreaFilled(false);
+        boton.setIcon(new ImageIcon(imagenEscalada9));
+        boton.setPreferredSize(new Dimension(100, 100));
+        boton.setVisible(true);
+        
+        vida1.setBounds(655, 50, 50, 50);
+        ImageIcon imagen_10 = new ImageIcon("img/cuadros/vidaRojo.png");
+        Image imagenEscalada10 = imagen_10.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        vida1.setIcon(new ImageIcon(imagenEscalada10));
+        vida1.setPreferredSize(new Dimension(50, 50));
+        vida1.setVisible(true);
+        
+        vida2.setBounds(605, 50, 50, 50);
+        ImageIcon imagen_11 = new ImageIcon("img/cuadros/vidaRojo.png");
+        Image imagenEscalada11 = imagen_11.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        vida2.setIcon(new ImageIcon(imagenEscalada11));
+        vida2.setPreferredSize(new Dimension(50, 50));
+        vida2.setVisible(true);
+        
+        vida3.setBounds(555, 50, 50, 50);
+        ImageIcon imagen_12 = new ImageIcon("img/cuadros/vidaRojo.png");
+        Image imagenEscalada12 = imagen_12.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        vida3.setIcon(new ImageIcon(imagenEscalada12));
+        vida3.setPreferredSize(new Dimension(50, 50));
+        vida3.setVisible(true);
         
         
         
         
-        
+                              
         
     }
 
@@ -241,8 +280,37 @@ public class VentanaJuego extends JFrame{
     public void setBoton(JButton boton) {
         this.boton = boton;
     }
+
+    public JLabel getVida1() {
+        return vida1;
+    }
+
+    public void setVida1(JLabel vida1) {
+        this.vida1 = vida1;
+    }
+
+    public JLabel getVida2() {
+        return vida2;
+    }
+
+    public void setVida2(JLabel vida2) {
+        this.vida2 = vida2;
+    }
+
+    public JLabel getVida3() {
+        return vida3;
+    }
+
+    public void setVida3(JLabel vida3) {
+        this.vida3 = vida3;
+    }
     
-   
+    
+    public void addBtnListener(ActionListener listener) {
+        boton.addActionListener(listener);
+    }
+    
+    
     
     
     
