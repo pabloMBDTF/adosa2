@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import modelo.Juego;
 import modelo.Jugador;
+import vista.VentanaComoJugar;
 import vista.VentanaInicio;
 import vista.VentanaJuego;
 import vista.VentanaParaQue;
@@ -30,6 +31,7 @@ public class ControladorInicio {
     private final Jugador Jugador;
     private JLabel label4;
     private JLabel label3;
+    private JLabel label2;
     
     public ControladorInicio(Jugador jugador, VentanaInicio ventanaInicio) {
 
@@ -37,6 +39,7 @@ public class ControladorInicio {
         this.ventanaInicio = ventanaInicio;
         label4 = ventanaInicio.getLabel4();
         label3 = ventanaInicio.getLabel3();
+        label2 = ventanaInicio.getLabel2();
         
         label4.addMouseListener(new MouseAdapter() {
             @Override
@@ -53,6 +56,14 @@ public class ControladorInicio {
                 Juego juego = new Juego();
                 VentanaJuego ventana = new VentanaJuego();
                 ControladorJuego controlador = new ControladorJuego(juego, ventana);
+            }
+        });
+        
+        label2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ventanaInicio.getVentanaInicio().dispose();
+                VentanaComoJugar ventanaComoJugar = new VentanaComoJugar();
             }
         });
 

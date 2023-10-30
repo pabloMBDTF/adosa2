@@ -30,7 +30,7 @@ public class Proyecto_Adosa2 {
 
         VentanaInicio ventanaInicio = new VentanaInicio() ;
         //VentanaParaQue ventanaParaQue= new VentanaParaQue();
-        VentanaComoJugar ventanaComoJugar = new VentanaComoJugar();
+        //VentanaComoJugar ventanaComoJugar = new VentanaComoJugar();
         //Juego juego = new Juego();
 
         //juego.agregarFigurasAleatorias(3);
