@@ -85,9 +85,9 @@ public class ControladorJuego {
             System.out.println("a");
             respuesta = true;
             if (imgIguales == true && respuesta == true) {
-                    //timer.stop();
-                    //timer.restart();
-                    figPantalla += 1;
+                    if (figPantalla <= 7) {
+                        figPantalla += 1;
+                    }
                     juego.agregarFiguras();
                     juego.agregarFigurasAleatorias(figPantalla);
                     botonesActivos.clear();
@@ -97,9 +97,6 @@ public class ControladorJuego {
                     timer.start();
                     imgIguales = false;
                     respuesta = false;
-                    //fallar();
-                    
-                    //timer.stop();
             }else{
                 fallar();
                 respuesta = false;
@@ -153,7 +150,10 @@ public class ControladorJuego {
         respuesta = false;
         imgIguales = false;  
         vidas -= 1;
-        if (vidas > 0) {
+        if (vidas == 0 ) {
+            timer.stop();
+            ventana.getVentanaJuego().dispose();
+        }else if (vidas > 0) {
             switch (vidas) {
             case 1 -> cambiarImgLabel(ventana.getVida2(), "img/cuadros/vida.png"); // Tamaño pequeño
             case 2 -> cambiarImgLabel(ventana.getVida3(),"img/cuadros/vida.png");
@@ -170,12 +170,9 @@ public class ControladorJuego {
             iniciarRonda();
             timer.restart();
             timer.start();
-        }else if (vidas == 0){
-          
-            ventana.dispose();
         }
-        timer.restart();
-        timer.start();
+        //timer.restart();
+        //timer.start();
     }
     
     
