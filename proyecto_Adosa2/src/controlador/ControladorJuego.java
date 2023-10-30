@@ -64,6 +64,7 @@ public class ControladorJuego {
     private JLabel vida3;
     private boolean respuesta = false;
     private boolean imgIguales = false;
+    private boolean muted = false;
     
     
 
@@ -74,10 +75,7 @@ public class ControladorJuego {
         JButton botonAccion = ventana.getBoton();
         
         ventana.addBtnListener(new btnListener());
-        
-        
-        
-      
+        ventana.addMutedListener(new MutedListener());
     }
     
     class btnListener implements ActionListener {
@@ -103,6 +101,17 @@ public class ControladorJuego {
                 timer.restart();
                 timer.start();
             }
+            
+        }
+    }
+    class MutedListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (muted == false) {
+                muted = true;
+            }else{
+                muted = false;
+            }
+            
             
         }
     }
@@ -239,12 +248,10 @@ public class ControladorJuego {
             arregloSeleccionado.set(indiceBarra, figuraIntercambiada);
             
             listaFigurasC.remove(figuraIntercambiada);
-            
-            
-            
         }
-        reproducirSonidoA();
-
+        if (muted == false) {
+            reproducirSonidoA();
+        }
         System.out.println(listaFigurasC);
         System.out.println(barraArribaC);
         System.out.println(barraAbajoC);
@@ -295,6 +302,9 @@ public class ControladorJuego {
         // Reemplazar una figura al azar en la lista destino
         int indexDestino = random.nextInt(listaDestino.size());
         listaDestino.set(indexDestino, figura);
+        if (muted == false) {
+            reproducirSonidoCampana();
+        }
         iniciarRonda();
     }
 

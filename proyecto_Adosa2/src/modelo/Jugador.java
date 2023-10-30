@@ -13,6 +13,7 @@ public class Jugador {
     private int vidas;
     private int aciertos;
     private int errores;
+    private int puntaje;
 
     // Constructor vacío
     public Jugador() {
@@ -20,6 +21,8 @@ public class Jugador {
         this.vidas = 3;
         this.aciertos = 0;
         this.errores = 0;
+        this.puntaje = 0;
+        
     }
 
     public String getNombre() {

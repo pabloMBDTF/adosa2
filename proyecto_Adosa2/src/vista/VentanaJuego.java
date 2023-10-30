@@ -42,6 +42,7 @@ public class VentanaJuego extends JFrame{
     private JLabel vida1;
     private JLabel vida2;
     private JLabel vida3;
+    private JButton muted;
     
     
     
@@ -82,6 +83,7 @@ public class VentanaJuego extends JFrame{
         vida1 = new JLabel();
         vida2 = new JLabel();
         vida3 = new JLabel();
+        muted = new JButton();
         
         panel.add(btn1);
         panel.add(btn2);
@@ -95,6 +97,7 @@ public class VentanaJuego extends JFrame{
         panel.add(vida1);
         panel.add(vida2);
         panel.add(vida3);
+        panel.add(muted);
         
         
         btn1.setBounds(400, 25, 80, 80);
@@ -201,6 +204,15 @@ public class VentanaJuego extends JFrame{
         vida3.setIcon(new ImageIcon(imagenEscalada12));
         vida3.setPreferredSize(new Dimension(50, 50));
         vida3.setVisible(true);
+        
+        muted.setBounds(45, 350, 84, 84);
+        ImageIcon imagen_muted = new ImageIcon("img/cuadros/mutedImg.png");
+        Image imagenEscalada13 = imagen_muted.getImage().getScaledInstance(84, 84, Image.SCALE_SMOOTH);
+        muted.setIcon(new ImageIcon(imagenEscalada13));
+        muted.setBorderPainted(false);
+        muted.setContentAreaFilled(false);
+        muted.setPreferredSize(new Dimension(84, 84));
+        muted.setVisible(true);
         
         
        
@@ -312,10 +324,23 @@ public class VentanaJuego extends JFrame{
     public void setVida3(JLabel vida3) {
         this.vida3 = vida3;
     }
+
+    public JButton getMuted() {
+        return muted;
+    }
+
+    public void setMuted(JButton muted) {
+        this.muted = muted;
+    }
     
+
     
     public void addBtnListener(ActionListener listener) {
         boton.addActionListener(listener);
+    }
+    
+    public void addMutedListener(ActionListener listener) {
+        muted.addActionListener(listener);
     }
     
     
