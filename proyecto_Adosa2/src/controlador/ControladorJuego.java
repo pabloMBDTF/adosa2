@@ -10,11 +10,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import static java.lang.Math.random;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.SourceDataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,6 +40,8 @@ public class ControladorJuego {
     private Juego juego;
     private VentanaJuego ventana;
     private int figPantalla = 3;
+    private int vidas = 3;
+    private int numAleatorio;
     private List<Figura> barraArribaC;
     private List<Figura> barraAbajoC;
     private List<Figura> barraIzquierdaC;
@@ -53,7 +63,7 @@ public class ControladorJuego {
     private JLabel vida2;
     private JLabel vida3;
     private boolean respuesta = false;
-    private boolean imgIguales = true;
+    private boolean imgIguales = false;
     
     
 
@@ -73,18 +83,27 @@ public class ControladorJuego {
     class btnListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             System.out.println("a");
-            if (imgIguales == true) {
-                    figPantalla += 1;
-                    //juego.agregarFiguras();
-                    //juego.agregarFigurasAleatorias(figPantalla);
+            respuesta = true;
+            if (imgIguales == true && respuesta == true) {
+                    if (figPantalla <= 7) {
+                        figPantalla += 1;
+                    }
+                    juego.agregarFiguras();
+                    juego.agregarFigurasAleatorias(figPantalla);
                     botonesActivos.clear();
                     figActivas.clear();
                     iniciarRonda();
-                    System.out.println(botonesActivos);
-                    repetirFigura();
-                    
-                    timer.stop();
+                    timer.restart();
+                    timer.start();
+                    imgIguales = false;
+                    respuesta = false;
+            }else{
+                fallar();
+                respuesta = false;
+                timer.restart();
+                timer.start();
             }
+            
         }
     }
     
@@ -97,16 +116,26 @@ public class ControladorJuego {
         timer = new Timer(4000, new ActionListener() {
         @Override
             public void actionPerformed(ActionEvent e) {
-                //cambiarFigura();
-                //botonesActivos.clear();
-                //botonesActivos.clear();
-                //iniciarRonda();
-                repetirFigura();
                 
-               
+                if (respuesta != imgIguales) {
+                    fallar();                    
+                }else if(respuesta == false && imgIguales == false){
+                    Random random = new Random();
+                    int numeroAleatorio = random.nextInt(3) + 1;
+                    if (numeroAleatorio == 1){
+                        imgIguales = true;
+                        repetirFigura();
+                    }else if(numeroAleatorio == 2 || numeroAleatorio == 3){
+                        botonesActivos.clear();
+                        figActivas.clear();
+                        cambiarFigura();
+                        iniciarRonda();
+                    }
+                }
+
             }
         });
-        timer.stop(); 
+        timer.start(); 
         
         
         
@@ -116,11 +145,46 @@ public class ControladorJuego {
 
     }
     
+    public void fallar(){
+        //timer.stop();
+        respuesta = false;
+        imgIguales = false;  
+        vidas -= 1;
+        if (vidas == 0 ) {
+            timer.stop();
+            ventana.getVentanaJuego().dispose();
+        }else if (vidas > 0) {
+            switch (vidas) {
+            case 1 -> cambiarImgLabel(ventana.getVida2(), "img/cuadros/vida.png"); // Tamaño pequeño
+            case 2 -> cambiarImgLabel(ventana.getVida3(),"img/cuadros/vida.png");
+            }
+            if (figPantalla > 3) {
+                figPantalla -= 1;
+            }else{
+                figPantalla = 3;
+            }
+            botonesActivos.clear();
+            figActivas.clear();
+            juego.agregarFiguras();
+            juego.agregarFigurasAleatorias(figPantalla);
+            iniciarRonda();
+            timer.restart();
+            timer.start();
+        }
+        //timer.restart();
+        //timer.start();
+    }
+    
+    
+    //funcion que pinta las figuras con los arreglos actuales 
     public void iniciarRonda(){
         List<Figura> barraArrivaC = juego.getBarraArriba();
         List<Figura> barraAbajoC = juego.getBarraAbajo();
         List<Figura> barraIzquierdaC = juego.getBarraIzquierda();
         List<Figura> barraDerechaC = juego.getBarraDerecha();
+        
+        botonesActivos.clear();
+        figActivas.clear();
         
         pintarFigArriva();
         pintarFigAbajo();
@@ -171,7 +235,7 @@ public class ControladorJuego {
             Figura figuraIntercambiada = listaFigurasC.get(indiceListaFiguras);
             
             
-            listaFigurasC.add(figuraRemovidaDeBarra);
+            listaFigurasC.set(indiceListaFiguras, figuraRemovidaDeBarra);
             arregloSeleccionado.set(indiceBarra, figuraIntercambiada);
             
             listaFigurasC.remove(figuraIntercambiada);
@@ -179,6 +243,7 @@ public class ControladorJuego {
             
             
         }
+        reproducirSonidoA();
 
         System.out.println(listaFigurasC);
         System.out.println(barraArribaC);
@@ -195,7 +260,15 @@ public class ControladorJuego {
         ImageIcon imagen = new ImageIcon(direccion);
         Image imagenEscalada = imagen.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         btn.setIcon(new ImageIcon(imagenEscalada));
-        btn.setPreferredSize(new Dimension(80, 80));              
+        btn.setPreferredSize(new Dimension(80, 80));
+        System.out.println("bbbbb");
+    }
+    
+    public void cambiarImgLabel(JLabel lbl, String direccion){
+        ImageIcon imagen = new ImageIcon(direccion);
+        Image imagenEscalada = imagen.getImage().getScaledInstance(44, 44, Image.SCALE_SMOOTH);
+        lbl.setIcon(new ImageIcon(imagenEscalada));
+        lbl.setPreferredSize(new Dimension(44, 44));              
     }
     
     public void repetirFigura() {
@@ -204,50 +277,27 @@ public class ControladorJuego {
         List<Figura> barraIzquierdaC = juego.getBarraIzquierda();
         List<Figura> barraDerechaC = juego.getBarraDerecha();
         Random random = new Random();
-        
-        int valorProhibido = 0;
-        int valorBoton;
-        Figura figuraSeleccionada = null;
-        
-        
-        if (!figActivas.isEmpty()) {
-            
-            int indiceAleatorio = random.nextInt(figActivas.size());
 
-            // Obtén la Figura en el índice aleatorio
-            figuraSeleccionada = figActivas.get(indiceAleatorio);
+        // Crear una lista con todos los arreglos
+        List<List<Figura>> listas = Arrays.asList(barraArribaC, barraAbajoC, barraIzquierdaC, barraDerechaC);
 
-            // Asigna el índice aleatorio a la variable valorProhibido
-            valorProhibido = indiceAleatorio;
+        // Seleccionar dos listas al azar
+        List<Figura> listaOrigen;
+        List<Figura> listaDestino;
+        do {
+            listaOrigen = listas.get(random.nextInt(listas.size()));
+            listaDestino = listas.get(random.nextInt(listas.size()));
+        } while (listaOrigen.isEmpty() || listaDestino.isEmpty() || listaOrigen == listaDestino);
 
-            // Ahora puedes usar 'figuraSeleccionada' y 'valorProhibido' según tus necesidades
-        }
-        while (true) {
-            // Genera un número aleatorio entre 0 y el tamaño de la lista - 1
-            int numAle = random.nextInt(botonesActivos.size());
-            valorBoton = botonesActivos.get(numAle);
+        // Seleccionar una figura al azar de la lista origen
+        Figura figura = listaOrigen.get(random.nextInt(listaOrigen.size()));
 
-            // Si el número generado es diferente a valorProhibido, sal del bucle
-            if (valorBoton != valorProhibido) {
-                break;
-            }
-        }
-        switch (valorBoton) {
-            case 1 -> cambiarImgFig(ventana.getBtn1(),figuraSeleccionada.getRutaImg()); // Tamaño pequeño
-            case 2 -> cambiarImgFig(ventana.getBtn2(),figuraSeleccionada.getRutaImg()); 
-            case 3 -> cambiarImgFig(ventana.getBtn3(),figuraSeleccionada.getRutaImg()); 
-            case 4 -> cambiarImgFig(ventana.getBtn4(),figuraSeleccionada.getRutaImg()); 
-            case 5 -> cambiarImgFig(ventana.getBtn5(),figuraSeleccionada.getRutaImg()); 
-            case 6 -> cambiarImgFig(ventana.getBtn6(),figuraSeleccionada.getRutaImg()); 
-            case 7 -> cambiarImgFig(ventana.getBtn7(),figuraSeleccionada.getRutaImg()); 
-            case 8 -> cambiarImgFig(ventana.getBtn8(),figuraSeleccionada.getRutaImg()); 
-            default -> {
-            }
-        }
-        
-        
-        
+        // Reemplazar una figura al azar en la lista destino
+        int indexDestino = random.nextInt(listaDestino.size());
+        listaDestino.set(indexDestino, figura);
+        iniciarRonda();
     }
+
     
     public void pintarFigArriva() {
         List<Figura> barraArrivaC = juego.getBarraArriba();
@@ -292,7 +342,6 @@ public class ControladorJuego {
                 //ventana.getBtn2().setText(figura2.getNombre());
             }
         } else {
-            System.out.println("La lista está vacía");
         }
     }
     
@@ -339,7 +388,7 @@ public class ControladorJuego {
                 //ventana.getBtn4().setText(figura4.getNombre());
             }
         } else {
-            System.out.println("La lista está vacía");
+            
         }
     }
     
@@ -386,7 +435,6 @@ public class ControladorJuego {
                 //animarDesplazamientoBotones(ventana.getBtn6(), ventana.getBtn6().getX(), ventana.getBtn6().getY());
             }
         } else {
-            System.out.println("La lista está vacía");
         }
     }
     
@@ -435,7 +483,6 @@ public class ControladorJuego {
                 //animarDesplazamientoBotones(ventana.getBtn8(), ventana.getBtn8().getX(), ventana.getBtn8().getY());
             }
         } else {
-            System.out.println("La lista está vacía");
         }
     }
     
@@ -469,6 +516,26 @@ public class ControladorJuego {
     }
     
     
+    public void reproducirSonidoCampana() {
+        try {            
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sonidos/sndCampana.wav"));           
+            Clip clip = AudioSystem.getClip();            
+            clip.open(audioInputStream);            
+            clip.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     
+    public void reproducirSonidoA() {
+        try {            
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sonidos/sndA.wav"));           
+            Clip clip = AudioSystem.getClip();            
+            clip.open(audioInputStream);            
+            clip.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
         
 }

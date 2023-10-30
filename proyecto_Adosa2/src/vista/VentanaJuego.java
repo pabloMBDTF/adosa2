@@ -209,6 +209,14 @@ public class VentanaJuego extends JFrame{
         
     }
 
+    public JFrame getVentanaJuego() {
+        return ventanaJuego;
+    }
+
+    public void setVentanaJuego(JFrame ventanaJuego) {
+        this.ventanaJuego = ventanaJuego;
+    }
+
     public JButton getBtn1() {
         return btn1;
     }
