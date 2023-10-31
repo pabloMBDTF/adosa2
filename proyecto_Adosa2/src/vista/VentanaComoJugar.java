@@ -100,7 +100,7 @@ public class VentanaComoJugar extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 
-                //VentanaComoJugar.dispose();
+                dispose();
                 Jugador jugador = new Jugador();
                 VentanaInicio ventanaInicio = new VentanaInicio() ;
                 ControladorInicio inicio = new ControladorInicio(jugador, ventanaInicio);

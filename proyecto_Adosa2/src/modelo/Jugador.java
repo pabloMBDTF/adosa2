@@ -24,6 +24,15 @@ public class Jugador {
         this.puntaje = 0;
         
     }
+    
+    public Jugador(int aciertos, int errores, int puntaje) {
+        this.nombre = "";
+        this.vidas = 3;
+        this.aciertos = aciertos;
+        this.errores = errores;
+        this.puntaje = puntaje;
+        
+    }
 
     public String getNombre() {
         return nombre;
@@ -57,5 +66,28 @@ public class Jugador {
         this.errores = errores;
     }
 
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+    
+    
+    
+    public void sumarPuntaje(){
+        this.puntaje += 15;
+    }
+    
+    public void sumarAciertos(){
+        this.aciertos += 1;
+    }
+    
+    public void sumarErrores(){
+        this.errores += 1;
+    }
+    
+    
    
     }

@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -29,7 +31,9 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Figura;
 import modelo.Juego;
+import modelo.Jugador;
 import vista.VentanaJuego;
+import vista.VentanaStats;
 
 /**
  *
@@ -38,6 +42,7 @@ import vista.VentanaJuego;
 public class ControladorJuego {
     
     private Juego juego;
+    private Jugador jugador;
     private VentanaJuego ventana;
     private int figPantalla = 3;
     private int vidas = 3;
@@ -73,9 +78,12 @@ public class ControladorJuego {
         this.ventana = ventana;
         iniciarJuego();
         JButton botonAccion = ventana.getBoton();
+        jugador = juego.getJugador();
+        ventana.getPuntaje().setText("Puntaje: " + jugador.getPuntaje());
         
         ventana.addBtnListener(new btnListener());
         ventana.addMutedListener(new MutedListener());
+        ventana.addBtnKeyListener(new KeyListenerBtn());
     }
     
     class btnListener implements ActionListener {
@@ -86,24 +94,56 @@ public class ControladorJuego {
                     if (figPantalla <= 7) {
                         figPantalla += 1;
                     }
+                    switch (figPantalla) {
+                        case 5 ->  timer.setDelay(3000);// Tamaño pequeño
+                        case 6 ->  timer.setDelay(2600);
+                        case 7 ->  timer.setDelay(2300);
+                        case 8 ->  timer.setDelay(1500);
+                    }
                     juego.agregarFiguras();
                     juego.agregarFigurasAleatorias(figPantalla);
                     botonesActivos.clear();
                     figActivas.clear();
                     iniciarRonda();
+                    jugador.sumarAciertos();
+                    jugador.sumarPuntaje();
+                    ventana.getPuntaje().setText("Puntaje: " + jugador.getPuntaje());
+                    if (muted == false) {
+                        reproducirGanar();
+                    }
                     timer.restart();
                     timer.start();
                     imgIguales = false;
                     respuesta = false;
             }else{
+                if (muted == false) {
+                    reproducirPerder();
+                }
                 fallar();
                 respuesta = false;
-                timer.restart();
-                timer.start();
+                if (vidas > 0) {
+                    timer.restart();
+                    timer.start();
+                }
+                //timer.restart();
+                //timer.start();
             }
             
         }
     }
+    
+    class KeyListenerBtn extends KeyAdapter{
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyChar() == KeyEvent.VK_SPACE) {
+                System.out.println("a");
+                
+            }
+        }
+    }
+    
+    
+    
     class MutedListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (muted == false) {
@@ -127,7 +167,10 @@ public class ControladorJuego {
             public void actionPerformed(ActionEvent e) {
                 
                 if (respuesta != imgIguales) {
-                    fallar();                    
+                    if (muted == false) {
+                        reproducirPerder();
+                    }
+                    fallar();
                 }else if(respuesta == false && imgIguales == false){
                     Random random = new Random();
                     int numeroAleatorio = random.nextInt(3) + 1;
@@ -159,9 +202,11 @@ public class ControladorJuego {
         respuesta = false;
         imgIguales = false;  
         vidas -= 1;
+        jugador.sumarErrores();
         if (vidas == 0 ) {
             timer.stop();
             ventana.getVentanaJuego().dispose();
+            ControladorStats estadisticas = new ControladorStats(new VentanaStats(), new Jugador(jugador.getAciertos(), jugador.getErrores(), jugador.getPuntaje()));
         }else if (vidas > 0) {
             switch (vidas) {
             case 1 -> cambiarImgLabel(ventana.getVida2(), "img/cuadros/vida.png"); // Tamaño pequeño
@@ -171,6 +216,12 @@ public class ControladorJuego {
                 figPantalla -= 1;
             }else{
                 figPantalla = 3;
+            }
+            switch (figPantalla) {
+                case 5 ->  timer.setDelay(3000);// Tamaño pequeño
+                case 6 ->  timer.setDelay(2600);
+                case 7 ->  timer.setDelay(2300);
+                case 8 ->  timer.setDelay(1500);
             }
             botonesActivos.clear();
             figActivas.clear();
@@ -250,7 +301,7 @@ public class ControladorJuego {
             listaFigurasC.remove(figuraIntercambiada);
         }
         if (muted == false) {
-            reproducirSonidoA();
+            reproducirCambiarFig();
         }
         System.out.println(listaFigurasC);
         System.out.println(barraArribaC);
@@ -303,7 +354,7 @@ public class ControladorJuego {
         int indexDestino = random.nextInt(listaDestino.size());
         listaDestino.set(indexDestino, figura);
         if (muted == false) {
-            reproducirSonidoCampana();
+            reproducirCambiarFig();
         }
         iniciarRonda();
     }
@@ -540,6 +591,38 @@ public class ControladorJuego {
     public void reproducirSonidoA() {
         try {            
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sonidos/sndA.wav"));           
+            Clip clip = AudioSystem.getClip();            
+            clip.open(audioInputStream);            
+            clip.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
+    public void reproducirCambiarFig() {
+        try {            
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sonidos/sndCambiarFig.wav"));           
+            Clip clip = AudioSystem.getClip();            
+            clip.open(audioInputStream);            
+            clip.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void reproducirGanar() {
+        try {            
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sonidos/sndGanar.wav"));           
+            Clip clip = AudioSystem.getClip();            
+            clip.open(audioInputStream);            
+            clip.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void reproducirPerder() {
+        try {            
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sonidos/sndPerder.wav"));           
             Clip clip = AudioSystem.getClip();            
             clip.open(audioInputStream);            
             clip.start();

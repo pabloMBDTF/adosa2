@@ -17,24 +17,28 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import modelo.Jugador;
 
 /**
  *
- * @author USER CT
+ * @author pablo
  */
-public class VentanaParaQue extends JFrame{
+public class VentanaStats extends JFrame{
     
-    private JFrame ventanaParaQue;
+    private JFrame ventanaStats;
     private JPanel panel;
     private JButton boton;
+    private JLabel puntaje;
+    private JLabel errores;
+    private JLabel aciertos;
     
     
-    public VentanaParaQue(){
-        ventanaParaQue = new JFrame("para que jugar");
-        ventanaParaQue.setSize(800, 600);
-        ventanaParaQue.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public VentanaStats(){
+        ventanaStats = new JFrame("para que jugar");
+        ventanaStats.setSize(800, 600);
+        ventanaStats.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         iniciarComponentes();
     }
      
@@ -47,7 +51,7 @@ public class VentanaParaQue extends JFrame{
                 super.paintComponent(g);
                 // Cargar la imagen de fondo desde un archivo
                 try {
-                    BufferedImage imagenFondo = ImageIO.read(new File("img/fondos/paraQueJugar.png"));
+                    BufferedImage imagenFondo = ImageIO.read(new File("img/fondos/fondo.png"));
                     g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -55,7 +59,7 @@ public class VentanaParaQue extends JFrame{
             }
         };
 
-        ventanaParaQue.setContentPane(panel);
+        ventanaStats.setContentPane(panel);
         panel.setLayout(null);
 
         boton = new JButton(); 
@@ -71,26 +75,64 @@ public class VentanaParaQue extends JFrame{
 
         panel.add(boton);
 
-        ventanaParaQue.setVisible(true);
+        ventanaStats.setVisible(true);
 
-        boton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                ventanaParaQue.dispose();
-                Jugador jugador = new Jugador();
-                VentanaInicio ventanaInicio = new VentanaInicio() ;
-                ControladorInicio inicio = new ControladorInicio(jugador, ventanaInicio);
-            }
-        });
+        
     }
 
     public JFrame getVentanaParaQue() {
-        return ventanaParaQue;
+        return ventanaStats;
     }
 
     public void setVentanaParaQue(JFrame ventanaParaQue) {
-        this.ventanaParaQue = ventanaParaQue;
+        this.ventanaStats = ventanaParaQue;
     }
-}
-     
 
+    public JFrame getVentanaStats() {
+        return ventanaStats;
+    }
+
+    public void setVentanaStats(JFrame ventanaStats) {
+        this.ventanaStats = ventanaStats;
+    }
+
+    public JButton getBoton() {
+        return boton;
+    }
+
+    public void setBoton(JButton boton) {
+        this.boton = boton;
+    }
+    
+    
+
+    public JLabel getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(JLabel puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    public JLabel getErrores() {
+        return errores;
+    }
+
+    public void setErrores(JLabel errores) {
+        this.errores = errores;
+    }
+
+    public JLabel getAciertos() {
+        return aciertos;
+    }
+
+    public void setAciertos(JLabel aciertos) {
+        this.aciertos = aciertos;
+    }
+    
+    public void addBtnListener(ActionListener listener) {
+        boton.addActionListener(listener);
+    }
+    
+    
+}

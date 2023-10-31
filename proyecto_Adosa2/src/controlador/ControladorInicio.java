@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -47,6 +48,17 @@ public class ControladorInicio {
                 ventanaInicio.getVentanaInicio().dispose();
                 VentanaParaQue ventana = new VentanaParaQue();
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                label4.setBounds(660, 225, 120, 120);
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                label4.setBounds(660, 225, 96, 96);
+                //label4.setPreferredSize(new Dimension(96, 96));
+            }
         });
         
         label3.addMouseListener(new MouseAdapter() {
@@ -57,6 +69,17 @@ public class ControladorInicio {
                 VentanaJuego ventana = new VentanaJuego();
                 ControladorJuego controlador = new ControladorJuego(juego, ventana);
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                label3.setBounds(350, 450, 120, 120);
+                //label4.setPreferredSize(new Dimension(84, 84));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                label3.setBounds(350, 450, 96, 96);
+                //label4.setPreferredSize(new Dimension(96, 96));
+            }
         });
         
         label2.addMouseListener(new MouseAdapter() {
@@ -64,6 +87,17 @@ public class ControladorInicio {
             public void mouseClicked(MouseEvent e) {
                 ventanaInicio.getVentanaInicio().dispose();
                 VentanaComoJugar ventanaComoJugar = new VentanaComoJugar();
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                label2.setBounds(50, 225, 120, 120);
+                //label4.setPreferredSize(new Dimension(84, 84));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                label2.setBounds(50, 225, 96, 96);
+                //label4.setPreferredSize(new Dimension(96, 96));
             }
         });
 

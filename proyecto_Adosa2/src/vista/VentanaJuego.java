@@ -4,19 +4,33 @@
  */
 package vista;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -42,6 +56,7 @@ public class VentanaJuego extends JFrame{
     private JLabel vida1;
     private JLabel vida2;
     private JLabel vida3;
+    private JLabel puntaje;
     private JButton muted;
     
     
@@ -83,6 +98,7 @@ public class VentanaJuego extends JFrame{
         vida1 = new JLabel();
         vida2 = new JLabel();
         vida3 = new JLabel();
+        puntaje = new JLabel("hola");
         muted = new JButton();
         
         panel.add(btn1);
@@ -97,6 +113,7 @@ public class VentanaJuego extends JFrame{
         panel.add(vida1);
         panel.add(vida2);
         panel.add(vida3);
+        panel.add(puntaje);
         panel.add(muted);
         
         
@@ -175,11 +192,12 @@ public class VentanaJuego extends JFrame{
         btn8.setPreferredSize(new Dimension(80, 80));
         btn8.setVisible(false);
         
-        boton.setBounds(655, 360, 100, 100);
+        boton.setBounds(655, 350, 100, 100);
         ImageIcon imagen_9 = new ImageIcon("img/cuadros/btnJuego.png");
-        Image imagenEscalada9 = imagen_9.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        Image imagenEscalada9 = imagen_9.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
         boton.setBorderPainted(false);
         boton.setContentAreaFilled(false);
+        boton.setFocusPainted(false);
         boton.setIcon(new ImageIcon(imagenEscalada9));
         boton.setPreferredSize(new Dimension(100, 100));
         boton.setVisible(true);
@@ -205,6 +223,15 @@ public class VentanaJuego extends JFrame{
         vida3.setPreferredSize(new Dimension(50, 50));
         vida3.setVisible(true);
         
+        puntaje.setBounds(30, 50, 220, 60);
+        Font font = new Font("Orbitron", Font.ITALIC, 30); // Reemplaza "Orbitron" con la fuente futurista que prefieras
+        puntaje.setFont(font);
+
+        // Establece el color azul fosforescente
+        Color azulFosforescente = new Color(14, 152, 230); // Puedes ajustar los valores de RGB según tus preferencias
+        puntaje.setForeground(azulFosforescente);
+        puntaje.setVisible(true);
+        
         muted.setBounds(45, 350, 84, 84);
         ImageIcon imagen_muted = new ImageIcon("img/cuadros/mutedImg.png");
         Image imagenEscalada13 = imagen_muted.getImage().getScaledInstance(84, 84, Image.SCALE_SMOOTH);
@@ -213,6 +240,26 @@ public class VentanaJuego extends JFrame{
         muted.setContentAreaFilled(false);
         muted.setPreferredSize(new Dimension(84, 84));
         muted.setVisible(true);
+        
+        boton.addMouseListener(new MouseAdapter() {
+            
+            @Override
+            public void mousePressed(MouseEvent e) {
+                boton.setBounds(655, 350, 92, 92);
+                
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                boton.setBounds(655, 350, 100, 100);
+            }
+        });
+        
+        
+        
+        
+        
+        
+        
         
         
        
@@ -325,6 +372,14 @@ public class VentanaJuego extends JFrame{
         this.vida3 = vida3;
     }
 
+    public JLabel getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(JLabel puntaje) {
+        this.puntaje = puntaje;
+    }
+
     public JButton getMuted() {
         return muted;
     }
@@ -333,14 +388,16 @@ public class VentanaJuego extends JFrame{
         this.muted = muted;
     }
     
-
-    
     public void addBtnListener(ActionListener listener) {
         boton.addActionListener(listener);
     }
     
     public void addMutedListener(ActionListener listener) {
         muted.addActionListener(listener);
+    }
+    
+    public void addBtnKeyListener(KeyListener listenControl){
+        boton.addKeyListener(listenControl);
     }
     
     
