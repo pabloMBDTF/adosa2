@@ -2,13 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package controlador;
 
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 import modelo.Juego;
 import modelo.Jugador;
 import vista.VentanaComoJugar;
@@ -72,13 +80,13 @@ public class ControladorInicio {
             @Override
             public void mouseEntered(MouseEvent e) {
                 label3.setBounds(350, 450, 120, 120);
-                //label4.setPreferredSize(new Dimension(84, 84));
+               
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 label3.setBounds(350, 450, 96, 96);
-                //label4.setPreferredSize(new Dimension(96, 96));
+                
             }
         });
         
@@ -91,13 +99,13 @@ public class ControladorInicio {
             @Override
             public void mouseEntered(MouseEvent e) {
                 label2.setBounds(50, 225, 120, 120);
-                //label4.setPreferredSize(new Dimension(84, 84));
+                
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 label2.setBounds(50, 225, 96, 96);
-                //label4.setPreferredSize(new Dimension(96, 96));
+                
             }
         });
 

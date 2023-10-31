@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package modelo;
 
 import java.util.ArrayList;
@@ -170,8 +179,6 @@ public class Juego {
 
             listaFiguras.remove(indiceFiguraAleatoria);
         }
-
-        //System.out.println("Todo bien");
         System.out.println(barraArriba);
         System.out.println(barraAbajo);
         System.out.println(barraIzquierda);

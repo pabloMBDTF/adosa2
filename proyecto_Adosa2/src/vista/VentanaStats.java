@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package vista;
 
 import controlador.ControladorInicio;
@@ -51,7 +60,6 @@ public class VentanaStats extends JFrame{
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Cargar la imagen de fondo desde un archivo
                 try {
                     BufferedImage imagenFondo = ImageIO.read(new File("img/fondos/fondo.png"));
                     g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
@@ -87,11 +95,11 @@ public class VentanaStats extends JFrame{
         errores.setVisible(true);
         aciertos.setVisible(true);
         
-        Font font = new Font("Orbitron", Font.ITALIC, 30); // Reemplaza "Orbitron" con la fuente futurista que prefieras
+        Font font = new Font("Orbitron", Font.ITALIC, 30); 
         puntaje.setFont(font);
 
-        // Establece el color azul fosforescente
-        Color azulFosforescente = new Color(14, 152, 230); // Puedes ajustar los valores de RGB según tus preferencias
+       
+        Color azulFosforescente = new Color(14, 152, 230);
         puntaje.setForeground(azulFosforescente);
         
         errores.setForeground(azulFosforescente);

@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package modelo;
 
 /**
@@ -17,12 +26,11 @@ public class Figura {
     }
     
     public Figura duplicar() {
-    // Crea una nueva instancia de Figura y copia los atributos de la figura actual
         Figura figuraDuplicada = new Figura();
         figuraDuplicada.setNombre(this.nombre);
-        figuraDuplicada.setRutaImg(this.rutaImg); // Suponiendo que tienes un atributo "color"
+        figuraDuplicada.setRutaImg(this.rutaImg); 
 
-        // Si tienes otros atributos, asegúrate de copiarlos también
+       
 
         return figuraDuplicada;
     }

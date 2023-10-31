@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package vista;
 
 import java.awt.Dimension;
@@ -47,7 +56,6 @@ public class VentanaInicio extends JFrame{
           @Override
           protected void paintComponent(Graphics g) {
               super.paintComponent(g);
-              // Cargar la imagen de fondo desde un archivo
               try {
                   BufferedImage imagenFondo = ImageIO.read(new File("img/fondos/fondoInicio.png"));
                   g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);

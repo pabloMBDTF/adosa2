@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package vista;
 
 import java.awt.Color;
@@ -227,7 +236,7 @@ public class VentanaJuego extends JFrame{
         Font font = new Font("Orbitron", Font.ITALIC, 30); // Reemplaza "Orbitron" con la fuente futurista que prefieras
         puntaje.setFont(font);
 
-        // Establece el color azul fosforescente
+        
         Color azulFosforescente = new Color(14, 152, 230); // Puedes ajustar los valores de RGB según tus preferencias
         puntaje.setForeground(azulFosforescente);
         puntaje.setVisible(true);

@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package vista;
 
 import controlador.ControladorInicio;
@@ -50,7 +59,7 @@ public class VentanaComoJugar extends JFrame {
             paneles.add(panel);
         }
 
-        // Configurar los botones de navegación
+        
         anteriorButton = new JButton("Anterior");
         ImageIcon imagen_1 = new ImageIcon("img/cuadros/flechaDerecha.png");
         Image imagenEscalada1 = imagen_1.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);

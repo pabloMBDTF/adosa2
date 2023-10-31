@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
+Pablo Becerrra G. - 2243506 - pablo.becerra@correounivalle.edu.co
+Tiffany Torres F. - 2241747 - tiffany.torre@correounivalle.edu.do
+
+Fundamentos de programacion orientada a eventos
+
+*/
+
 package controlador;
 
 import java.awt.Dimension;
@@ -196,7 +205,6 @@ public class ControladorJuego {
     }
     
     public void fallar(){
-        //timer.stop();
         respuesta = false;
         imgIguales = false;  
         vidas -= 1;
@@ -216,7 +224,7 @@ public class ControladorJuego {
                 figPantalla = 3;
             }
             switch (figPantalla) {
-                case 5 ->  timer.setDelay(3000);// Tamaño pequeño
+                case 5 ->  timer.setDelay(3000);
                 case 6 ->  timer.setDelay(2600);
                 case 7 ->  timer.setDelay(2300);
                 case 8 ->  timer.setDelay(1500);
@@ -229,12 +237,11 @@ public class ControladorJuego {
             timer.restart();
             timer.start();
         }
-        //timer.restart();
-        //timer.start();
+        
     }
     
     
-    //funcion que pinta las figuras con los arreglos actuales 
+    
     public void iniciarRonda(){
         List<Figura> barraArrivaC = juego.getBarraArriba();
         List<Figura> barraAbajoC = juego.getBarraAbajo();
@@ -251,7 +258,7 @@ public class ControladorJuego {
     } 
     
         
-    //cambia una figura de una de las barras por una de el arreglo de figuras general
+    
     public void cambiarFigura() {
         List<Figura> barraArribaC = juego.getBarraArriba();
         List<Figura> barraAbajoC = juego.getBarraAbajo();
@@ -285,7 +292,7 @@ public class ControladorJuego {
         }
 
         if (!listaFigurasC.isEmpty()) {
-            // Obtiene un índice aleatorio en la lista de figuras
+            
             int indiceListaFiguras = random.nextInt(listaFigurasC.size());
             int indiceBarra = random.nextInt(arregloSeleccionado.size());
             
@@ -334,10 +341,10 @@ public class ControladorJuego {
         List<Figura> barraDerechaC = juego.getBarraDerecha();
         Random random = new Random();
 
-        // Crear una lista con todos los arreglos
+        
         List<List<Figura>> listas = Arrays.asList(barraArribaC, barraAbajoC, barraIzquierdaC, barraDerechaC);
 
-        // Seleccionar dos listas al azar
+        
         List<Figura> listaOrigen;
         List<Figura> listaDestino;
         do {
@@ -345,10 +352,10 @@ public class ControladorJuego {
             listaDestino = listas.get(random.nextInt(listas.size()));
         } while (listaOrigen.isEmpty() || listaDestino.isEmpty() || listaOrigen == listaDestino);
 
-        // Seleccionar una figura al azar de la lista origen
+        
         Figura figura = listaOrigen.get(random.nextInt(listaOrigen.size()));
 
-        // Reemplazar una figura al azar en la lista destino
+        
         int indexDestino = random.nextInt(listaDestino.size());
         listaDestino.set(indexDestino, figura);
         if (muted == false) {
@@ -377,8 +384,7 @@ public class ControladorJuego {
                 ventana.getBtn1().setText(null);
                 botonesActivos.add(1); 
                 figActivas.add(figura1);
-                //animarDesplazamientoBotones(ventana.getBtn1(), ventana.getBtn1().getX(), ventana.getBtn1().getY());
-                //ventana.getBtn1().setText(figura1.getNombre());
+                
 
             }
 
@@ -397,8 +403,7 @@ public class ControladorJuego {
                 ventana.getBtn2().setText(null);
                 botonesActivos.add(2);
                 figActivas.add(figura2);
-                //animarDesplazamientoBotones(ventana.getBtn2(), ventana.getBtn2().getX(), ventana.getBtn2().getY());
-                //ventana.getBtn2().setText(figura2.getNombre());
+                
             }
         } else {
         }
@@ -424,8 +429,7 @@ public class ControladorJuego {
                 ventana.getBtn3().setText(null);
                 botonesActivos.add(3); 
                 figActivas.add(figura3);
-                //animarDesplazamientoBotones(ventana.getBtn3(), ventana.getBtn3().getX(), ventana.getBtn3().getY());
-                //ventana.getBtn3().setText(figura3.getNombre());
+                
 
             }
 
@@ -443,8 +447,7 @@ public class ControladorJuego {
                 ventana.getBtn4().setText(null);
                 botonesActivos.add(4); 
                 figActivas.add(figura4);
-                //animarDesplazamientoBotones(ventana.getBtn4(), ventana.getBtn4().getX(), ventana.getBtn4().getY());
-                //ventana.getBtn4().setText(figura4.getNombre());
+                
             }
         } else {
             
@@ -471,7 +474,7 @@ public class ControladorJuego {
                 ventana.getBtn5().setText(null);
                 botonesActivos.add(5); 
                 figActivas.add(figura5);
-                //animarDesplazamientoBotones(ventana.getBtn5(), ventana.getBtn5().getX(), ventana.getBtn5().getY());
+                
                 
 
             }
@@ -491,7 +494,7 @@ public class ControladorJuego {
                 ventana.getBtn6().setText(null);
                 botonesActivos.add(6); 
                 figActivas.add(figura6);
-                //animarDesplazamientoBotones(ventana.getBtn6(), ventana.getBtn6().getX(), ventana.getBtn6().getY());
+                
             }
         } else {
         }
@@ -519,8 +522,7 @@ public class ControladorJuego {
                 botonesActivos.add(7);
                 figActivas.add(figura7);
                 
-                //animarDesplazamientoBotones(ventana.getBtn7(), ventana.getBtn7().getX(), ventana.getBtn7().getY());
-                
+               
 
             }
 
@@ -539,7 +541,7 @@ public class ControladorJuego {
                 ventana.getBtn8().setText(null);
                 botonesActivos.add(8); 
                 figActivas.add(figura8);
-                //animarDesplazamientoBotones(ventana.getBtn8(), ventana.getBtn8().getX(), ventana.getBtn8().getY());
+               
             }
         } else {
         }
@@ -547,8 +549,8 @@ public class ControladorJuego {
     
     
     public void animarDesplazamientoBotones(JButton boton, int xDestino, int yDestino) {
-        int xInicio = -boton.getWidth(); // Iniciar fuera de la pantalla a la izquierda
-        int yInicio = yDestino; // Mismo nivel vertical que el destino
+        int xInicio = -boton.getWidth(); 
+        int yInicio = yDestino; 
 
         Timer timerA = new Timer(1, new ActionListener() {
             int x = xInicio;
@@ -565,7 +567,7 @@ public class ControladorJuego {
                 boton.setLocation(x, y);
 
                 if (x == xDestino && y == yDestino) {
-                    // La animación ha llegado a su destino, detén el timer
+                   
                     ((Timer) e.getSource()).stop();
                 }
             }
