@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import modelo.Jugador;
 import vista.VentanaInicio;
 import vista.VentanaStats;
@@ -18,11 +19,15 @@ public class ControladorStats {
     
     private VentanaStats ventana;
     private Jugador modelo;
+    private JLabel puntaje;
+    private JLabel errores;
+    private JLabel aciertos;
 
     public ControladorStats(VentanaStats ventana, Jugador modelo) {
         this.ventana = ventana;
         this.modelo = modelo;
         ventana.addBtnListener(new btnListener());
+        mostrarStats();
     }
     
     class btnListener implements ActionListener {
@@ -32,6 +37,16 @@ public class ControladorStats {
             VentanaInicio ventanaInicio = new VentanaInicio() ;
             ControladorInicio inicio = new ControladorInicio(jugador, ventanaInicio);
         }
+    }
+    
+    public void mostrarStats(){
+        ventana.getPuntaje().setBounds(100, 120, 200, 30);
+        ventana.getPuntaje().setText("Puntaje: " + modelo.getPuntaje());
+        ventana.getErrores().setBounds(100, 240, 150, 30);
+        ventana.getErrores().setText("Errores: " + modelo.getErrores());
+        ventana.getAciertos().setBounds(100, 360, 150, 30);
+        ventana.getAciertos().setText("Aciertos: " + modelo.getAciertos());
+        
     }
     
 

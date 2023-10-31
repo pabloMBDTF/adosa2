@@ -5,7 +5,9 @@
 package vista;
 
 import controlador.ControladorInicio;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -74,6 +76,33 @@ public class VentanaStats extends JFrame{
         boton.setVisible(true); 
 
         panel.add(boton);
+        panel.add(boton);
+        panel.add(boton);
+        panel.add(boton);
+        
+        puntaje = new JLabel("puntaje");
+        errores = new JLabel("errores");
+        aciertos = new JLabel("aciertos");
+        puntaje.setVisible(true);
+        errores.setVisible(true);
+        aciertos.setVisible(true);
+        
+        Font font = new Font("Orbitron", Font.ITALIC, 30); // Reemplaza "Orbitron" con la fuente futurista que prefieras
+        puntaje.setFont(font);
+
+        // Establece el color azul fosforescente
+        Color azulFosforescente = new Color(14, 152, 230); // Puedes ajustar los valores de RGB según tus preferencias
+        puntaje.setForeground(azulFosforescente);
+        
+        errores.setForeground(azulFosforescente);
+        errores.setFont(font);
+        
+        aciertos.setForeground(azulFosforescente);
+        aciertos.setFont(font);
+        
+        panel.add(puntaje);
+        panel.add(errores);
+        panel.add(aciertos);
 
         ventanaStats.setVisible(true);
 
@@ -103,8 +132,6 @@ public class VentanaStats extends JFrame{
     public void setBoton(JButton boton) {
         this.boton = boton;
     }
-    
-    
 
     public JLabel getPuntaje() {
         return puntaje;

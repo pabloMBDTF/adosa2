@@ -88,7 +88,6 @@ public class ControladorJuego {
     
     class btnListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            System.out.println("a");
             respuesta = true;
             if (imgIguales == true && respuesta == true) {
                     if (figPantalla <= 7) {
@@ -125,8 +124,7 @@ public class ControladorJuego {
                     timer.restart();
                     timer.start();
                 }
-                //timer.restart();
-                //timer.start();
+                
             }
             
         }
@@ -552,7 +550,7 @@ public class ControladorJuego {
         int xInicio = -boton.getWidth(); // Iniciar fuera de la pantalla a la izquierda
         int yInicio = yDestino; // Mismo nivel vertical que el destino
 
-        Timer timer = new Timer(10, new ActionListener() {
+        Timer timerA = new Timer(1, new ActionListener() {
             int x = xInicio;
             int y = yInicio;
 
@@ -573,7 +571,7 @@ public class ControladorJuego {
             }
         });
 
-        timer.start();
+        timerA.start();
     }
     
     
